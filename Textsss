@@ -1,0 +1,27 @@
+CoffeeDragon/
+├── main.py              ← 실행 클래스 Main
+├── GameObject/              ← Receiver (클래스 5개, 파일 5개)
+│   ├── Character/
+│   │     └── Warrior
+│   ├── Monster/
+│   │     ├── Slime
+│   │     ├── Golem
+│   │     └── Dragon
+│   └── Item/
+
+
+
+
+├── /            ← Command 패턴 (클래스 11개, 파일 11개)
+│   ├── command.py                (추상 Command)
+│   ├── show_report_command.py    find_employee_command.py
+│   ├── add_employee_command.py   add_history_command.py
+│   ├── transfer_command.py       remove_employee_command.py
+│   ├── save_csv_command.py       undo_command.py
+│   └── history_command.py        exit_command.py
+└── app/                 ← Invoker와 보조 클래스
+    ├── menu_app.py  console.py  sample_data.py
+
+
+
+armor skill drop change enhance
