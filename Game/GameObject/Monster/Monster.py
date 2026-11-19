@@ -5,11 +5,14 @@ from Game.GameObject.Item.Item import Item
 
 
 class Monster(GameObject):
-    def __init__(self, hp: HP, element: Element, drop: Item):
+    def __init__(self, name: str, hp: HP, element: Element, exp_reward: int, drop: Item | None = None):
+        super().__init__(name)
         self.__hp = hp
         self.__element = element
+        self.exp_reward = exp_reward
         self.__drop_item = []
-        self.__drop_item.append(drop)
+        if drop is not None:
+            self.__drop_item.append(drop)
 
     @property
     def hp(self) -> HP:
