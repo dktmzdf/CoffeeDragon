@@ -1,10 +1,13 @@
+from Util.GameLog import GameLog
+
+
 # 나중에 Charater로 수정
 class Attack:
     """공격 한 번을 나타내는 클래스.
 
     공격자(causer)의 무기와 대상(target)의 속성으로 데미지를 계산한다.
     최종 데미지 = 무기 공격력(강화 포함) * 속성 배율.
-    execute()로 대상에게 데미지를 주고 공격 로그를 반환한다."""
+    execute()로 대상에게 데미지를 주고 공격 로그를 GameLog에 기록한다."""
 
     def __init__(self, causer: "Character", target: "Monster"):
         """공격자와 대상 설정"""
@@ -21,12 +24,10 @@ class Attack:
         calc_damage = base_dmg * weapon_element.multiplier(self.target.element)
         return calc_damage
 
-    def execute(self) -> str:
-        """데미지 적용 후 로그 반환"""
-        dmg = self.damage
+    def execute(self):
+        """데미지 적용 후 공격 로그 기록"""
         self.target.damage(self.causer, self.damage)
-
-        return self.attack_log()
+        GameLog().add(self.attack_log())
 
     def attack_log(self) -> str:
         """공격 로그 문자열"""

@@ -6,6 +6,7 @@ from Game.GameObject.UI.Inventory import Inventory
 from Game.GameObject.Item import Item
 from Game.Action.Attack import Attack
 from Game.GameObject.Character.Monster.Monster import Monster
+from Util.GameLog import GameLog
 
 
 class Character(GameObject):
@@ -45,19 +46,13 @@ class Character(GameObject):
         """인벤토리"""
         return self.__inventory
 
-    def attack(self, enemy: Monster | None) -> list[str] | bool:
-        """적 공격 후 전투 로그 반환"""
-        if enemy is None:
-            return False
-        if not enemy.hp.is_alive():
-            return []
+    def attack(self, enemy: Monster | None):
+        """적 공격 (로그는 Attack, Monster가 기록)"""
+        if enemy is None or not enemy.hp.is_alive():
+            return
 
-        out_logs = [Attack(self, enemy).execute()]
-        monster_death_log = enemy.check_alive(self)
-        if monster_death_log != []:
-            for log in reversed(monster_death_log):
-                out_logs.append(log)
-        return out_logs
+        Attack(self, enemy).execute()
+        enemy.check_alive(self)
 
     def equip_new(self, item: Item):
         """현재 무기를 인벤토리에 넣고 새 무기 장착"""
@@ -80,15 +75,20 @@ class Character(GameObject):
         for value in self.inventory.items:
             if value.name == item_name:
                 self.equip_new(value)
+                GameLog().add(f"'{value.name}' 장착!")
                 return True
+
+        GameLog().add(f"'{item_name}'이(가) 인벤토리에 없습니다.")
+        return False
 
     def upgrade_weapon(self):
         """강화석을 써서 무기 강화"""
         if self.inventory.remove_item_inventroy_for_name("강화석"):
             self.weapon.upgrade()
+            GameLog().add(f"강화 성공! {self.weapon.name} 공격력 {self.weapon.power}")
             return True
         else:
-            print("강화석이 없습니다.")
+            GameLog().add("강화석이 없습니다.")
             return False
 
     def gain_exp(self, exp: int):

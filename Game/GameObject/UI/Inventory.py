@@ -38,17 +38,17 @@ class Inventory:
 
         return False
 
-    def add_item_inventory(self, item: "Item"):
-        """아이템을 넣고 획득 로그 반환"""
+    def add_item_inventory(self, item: "Item") -> bool:
+        """아이템 넣기. 성공하면 True"""
         if self.is_set_owner == False:
-            return
+            return False
 
         if self.inventory_limit:
-            return
+            return False
 
         self.inventory[item.uuid] = item
 
-        return f"'{item.name}' 흭득!"
+        return True
 
     def remove_item_inventroy_for_name(self, name: str) -> bool:
         """이름으로 아이템 하나 제거"""

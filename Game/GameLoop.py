@@ -24,17 +24,19 @@ class GameLoop:
     def run(self):
         """모든 단계를 순서대로 진행"""
         for stage, monster in enumerate(self.stages, 1):
-            print(f"===== {stage}단계: {monster.name} 등장! =====")
+            GameLog().add(f"===== {stage}단계: {monster.name} 등장! =====")
             if not self.battle(monster):
-                print("게임 오버...")
+                GameLog().add("게임 오버...")
+                GameLog().flush()
                 return
-        print("모든 단계 클리어!")
+        GameLog().add("모든 단계 클리어!")
+        GameLog().flush()
 
     def battle(self, monster: Monster) -> bool:
         """한 몬스터와 전투. 이기면 True, 지면 False"""
         turn = 1
         while monster.hp.is_alive():
-            print(f"--- {turn}턴 ---")
+            GameLog().add(f"--- {turn}턴 ---")
             if not self.player_turn(monster):
                 continue  # 턴을 소모하지 않는 행동
             if monster.hp.is_alive():
@@ -48,22 +50,21 @@ class GameLoop:
         """플레이어 행동. 턴을 소모하면 True"""
         choice = self.game_input("1.공격 2.무기 교체 3.강화 4.상태 > ")
         if choice == "1":
-            for log in self.hero.attack(monster):
-                print(log)
+            self.hero.attack(monster)
             return True
         if choice == "2":
             # TODO 무기 교체/강화가 턴을 소모할지 정하기
             for item in self.hero.inventory.items:
-                print(item.name)
-            print(self.hero.equip(self.game_input("장착할 무기 이름 > ")))
+                GameLog().add(item.name)
+            self.hero.equip(self.game_input("장착할 무기 이름 > "))
             return False
         if choice == "3":
-            print(self.hero.upgrade_weapon())
+            self.hero.upgrade_weapon()
             return False
         if choice == "4":
             self.show_status(monster)
             return False
-        print("잘못된 입력")
+        GameLog().add("잘못된 입력")
         return False
 
     def monster_turn(self, monster: Monster):
@@ -74,12 +75,12 @@ class GameLoop:
     def show_status(self, monster: Monster):
         """캐릭터와 몬스터 상태 출력"""
         hero = self.hero
-        print(
+        GameLog().add(
             f"{hero.name} Lv.{hero.level.level} HP {hero.hp.get_current_value}/{hero.hp.get_max_value} "
             f"무기 {hero.weapon.name}[{hero.weapon.element.element_name}] 공격력 {hero.weapon.power}"
         )
-        print(f"인벤토리 {[i.name for i in hero.inventory.items]}")
-        print(
+        GameLog().add(f"인벤토리 {[i.name for i in hero.inventory.items]}")
+        GameLog().add(
             f"{monster.name} HP {monster.hp.get_current_value}/{monster.hp.get_max_value}"
         )
 

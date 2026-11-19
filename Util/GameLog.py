@@ -31,7 +31,7 @@ class GameLog:
         self.__history.extend(self.__buffer)
 
     @property
-    def history(self):
+    def buffer(self):
         return self.__buffer
 
     @property
