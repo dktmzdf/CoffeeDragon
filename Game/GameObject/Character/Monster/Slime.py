@@ -1,4 +1,4 @@
-from Game.GameObject.Monster.Monster import Monster
+from Game.GameObject.Character.Monster.Monster import Monster
 from Game.GameObject.Item.Weapon import Weapon
 from Game.Attribute.HP import HP
 from Game.Element import Element

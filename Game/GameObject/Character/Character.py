@@ -5,7 +5,7 @@ from Game.GameObject.Item.Weapon import Weapon
 from Game.GameObject.UI.Inventory import Inventory
 from Game.GameObject.Item import Item
 from Game.Action.Attack import Attack
-from Game.GameObject.Monster.Monster import Monster
+from Game.GameObject.Character.Monster.Monster import Monster
 
 
 class Character(GameObject):
@@ -77,7 +77,7 @@ class Character(GameObject):
         if item_name == "":
             return False
 
-        for key, value in self.inventory.items_new():
+        for value in self.inventory.items:
             if value.name == item_name:
                 self.equip_new(value)
                 return True

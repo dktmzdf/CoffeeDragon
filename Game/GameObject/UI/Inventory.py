@@ -85,7 +85,7 @@ class Inventory:
     @property
     def items(self):
         """아이템 목록"""
-        return self.inventory.items()
+        return list(self.inventory.values())
 
     def add(self, item: "Item"):
         """아이템 넣기"""

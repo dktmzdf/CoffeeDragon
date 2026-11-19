@@ -1,4 +1,4 @@
-from Game.GameObject.Monster import Monster
+from Game.GameObject.Character.Monster import Monster
 from Game.GameObject.Character import Character
 
 

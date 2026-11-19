@@ -1,7 +1,8 @@
-from Game.GameObject.Character.Warrior import Warrior
-from Game.GameObject.Monster.Slime import Slime
-from Game.GameObject.Monster.Golem import Golem
-from Game.GameObject.Monster.Dragon import Dragon
+from Game.GameObject.Character.Hero.Warrior import Warrior
+from Game.GameObject.Character.Monster.Slime import Slime
+from Game.GameObject.Character.Monster.Golem import Golem
+from Game.GameObject.Character.Monster.Dragon import Dragon
+from Game.GameLoop import GameLoop
 
 
 def report():
@@ -11,7 +12,7 @@ def report():
 
 def main():
     """진입점"""
-    report()
+    GameLoop(Warrior("아서")).run()
 
 
 if __name__ == "__main__":
