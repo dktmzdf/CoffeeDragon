@@ -52,6 +52,8 @@ class GameLoop:
             return True
         if choice == "2":
             # TODO 무기 교체/강화가 턴을 소모할지 정하기
+            for item in self.hero.inventory.items:
+                print(item.name)
             print(self.hero.equip(input("장착할 무기 이름 > ").strip()))
             return False
         if choice == "3":
@@ -76,4 +78,6 @@ class GameLoop:
             f"무기 {hero.weapon.name}[{hero.weapon.element.element_name}] 공격력 {hero.weapon.power}"
         )
         print(f"인벤토리 {[i.name for i in hero.inventory.items]}")
-        print(f"{monster.name} HP {monster.hp.get_current_value}/{monster.hp.get_max_value}")
+        print(
+            f"{monster.name} HP {monster.hp.get_current_value}/{monster.hp.get_max_value}"
+        )
