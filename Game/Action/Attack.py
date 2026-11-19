@@ -1,7 +1,3 @@
-from Game.GameObject.Character.Monster import Monster
-from Game.GameObject.Character import Character
-
-
 # 나중에 Charater로 수정
 class Attack:
     """공격 한 번을 나타내는 클래스.
@@ -9,7 +5,8 @@ class Attack:
     공격자(causer)의 무기와 대상(target)의 속성으로 데미지를 계산한다.
     최종 데미지 = 무기 공격력(강화 포함) * 속성 배율.
     execute()로 대상에게 데미지를 주고 공격 로그를 반환한다."""
-    def __init__(self, causer: Character, target: Monster):
+
+    def __init__(self, causer: "Character", target: "Monster"):
         """공격자와 대상 설정"""
         self.causer = causer
         self.target = target
