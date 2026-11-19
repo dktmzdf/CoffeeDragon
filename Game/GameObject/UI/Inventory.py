@@ -60,7 +60,6 @@ class Inventory:
 
         return True
 
-    # TODO get_item_for_name으로 바꿀것
     def take(self, name: str) -> "Item":
         if self.is_set_owner == False:
             return False
@@ -73,14 +72,7 @@ class Inventory:
 
     @property
     def items(self):
-        return [value for key, value in self.inventory.items()]
-
-    def items_new(self):
         return self.inventory.items()
 
     def add(self, item: "Item"):
         self.add_item_inventory(item)
-
-    # 나중 구현
-    def take__(self, item: "Item") -> "Item":
-        raise NotImplementedError("take는 아직 구현 안 됨")

@@ -7,7 +7,6 @@ class Level:
     def get_level(self):
         return self.__level
 
-    #  TODO 지우기
     @property
     def level(self):
         return self.__level
@@ -16,7 +15,6 @@ class Level:
     def get_exp(self):
         return self.__exp
 
-    #  TODO 지우기
     @property
     def exp(self):
         return self.__exp
