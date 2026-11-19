@@ -1,3 +1,7 @@
+from Game.GameObject.Character.Warrior import Warrior
+from Game.GameObject.Monster.Slime import Slime
+from Game.GameObject.Monster.Golem import Golem
+from Game.GameObject.Monster.Dragon import Dragon
 
 def report():
     hero = Warrior("아서")

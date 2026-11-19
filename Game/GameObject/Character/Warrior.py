@@ -1,4 +1,4 @@
-from GameObject import GameObject
+from Game.GameObject.GameObject import GameObject
 
 
 class Warrior(GameObject):

@@ -8,13 +8,21 @@ class Element(Enum):
 
     @property
     def counter(self) -> "Element":
-        """내가 이기는 속성"""
+        """이기는 속성"""
         return _COUNTERS[self][0]
 
     @property
     def reverse_counter(self) -> "Element":
-        """나를 이기는 속성"""
+        """지는 속성"""
         return _COUNTERS[self][1]
+
+    def multiplier(self, element: Element) -> float:
+        if self.counter == element:
+            return 2.0
+        elif self.reverse_counter == element:
+            return 0.5
+
+        return 1
 
 
 # 상성표: Enum 밖에 둬야 멤버로 안 잡힘
