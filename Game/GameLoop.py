@@ -3,6 +3,7 @@ from Game.GameObject.Character.Monster.Monster import Monster
 from Game.GameObject.Character.Monster.Slime import Slime
 from Game.GameObject.Character.Monster.Golem import Golem
 from Game.GameObject.Character.Monster.Dragon import Dragon
+from Util.GameLog import GameLog
 
 
 class GameLoop:
@@ -45,7 +46,7 @@ class GameLoop:
 
     def player_turn(self, monster: Monster) -> bool:
         """플레이어 행동. 턴을 소모하면 True"""
-        choice = input("1.공격 2.무기 교체 3.강화 4.상태 > ").strip()
+        choice = self.game_input("1.공격 2.무기 교체 3.강화 4.상태 > ")
         if choice == "1":
             for log in self.hero.attack(monster):
                 print(log)
@@ -54,7 +55,7 @@ class GameLoop:
             # TODO 무기 교체/강화가 턴을 소모할지 정하기
             for item in self.hero.inventory.items:
                 print(item.name)
-            print(self.hero.equip(input("장착할 무기 이름 > ").strip()))
+            print(self.hero.equip(self.game_input("장착할 무기 이름 > ")))
             return False
         if choice == "3":
             print(self.hero.upgrade_weapon())
@@ -81,3 +82,7 @@ class GameLoop:
         print(
             f"{monster.name} HP {monster.hp.get_current_value}/{monster.hp.get_max_value}"
         )
+
+    def game_input(self, msg: str):
+        GameLog().flush()
+        return input(msg).strip()

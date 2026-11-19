@@ -3,15 +3,17 @@ from Game.GameObject.Character.Monster.Slime import Slime
 from Game.GameObject.Character.Monster.Golem import Golem
 from Game.GameObject.Character.Monster.Dragon import Dragon
 from Game.GameLoop import GameLoop
+from Util.GameLog import GameLog
 
 
 def report():
     """과제 시나리오 실행: 슬라임 -> 골렘 -> 무기 교체/강화 -> 보스전"""
-    
 
 
 def main():
     """진입점"""
+    GameLog().add("CoffeeGame Start!!!")
+    GameLog().flush()
     GameLoop(Warrior("아서")).run()
 
 
