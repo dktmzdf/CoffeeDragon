@@ -15,7 +15,7 @@ class Weapon(Item):
 
     @property
     def power(self) -> int:
-        return self.__base_power + (5 *self.__enhance)
+        return self.__base_power + (5 * self.__enhance)
 
     @property
     def enhance(self) -> int:
@@ -25,5 +25,15 @@ class Weapon(Item):
     def element(self) -> Element:
         return self.__element
 
+    @property
+    def name(self) -> str:
+        out_name = (
+            f"+{self.__enhance} {super().name}"
+            if self.__enhance != 0
+            else f"{super().name}"
+        )
+
+        return out_name
+
     def upgrade(self):
-        self.enhance += 1
+        self.__enhance += 1

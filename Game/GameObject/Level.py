@@ -7,32 +7,40 @@ class Level:
     def get_level(self):
         return self.__level
 
+    #  TODO 지우기
+    @property
+    def level(self):
+        return self.__level
+
     @property
     def get_exp(self):
         return self.__exp
 
+    #  TODO 지우기
+    @property
+    def exp(self):
+        return self.__exp
+
     @property
     def level_max_exp(self):
-        return self.__level * self.__exp
-    
+        return self.__level * 100
+
     def gain(self, amount) -> bool:
         """
-            레벨 업을 하면 True 아니면 False
+        레벨 업을 하면 True 아니면 False
         """
         self.__exp += amount
 
-        #레벨업함?
+        # 레벨업함?
         is_level_up = self.level_max_exp <= self.__exp
 
         if is_level_up:
-            #무지막지한 경험치 먹었을때 예외처리
+            # 무지막지한 경험치 먹었을때 예외처리
             while self.level_max_exp <= self.__exp:
-                self.level_up()
+                self.__level_up()
 
         return is_level_up
 
-
     def __level_up(self):
-        self.__level += 1
         self.__exp -= self.level_max_exp
-        
+        self.__level += 1

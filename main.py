@@ -3,6 +3,7 @@ from Game.GameObject.Monster.Slime import Slime
 from Game.GameObject.Monster.Golem import Golem
 from Game.GameObject.Monster.Dragon import Dragon
 
+
 def report():
     hero = Warrior("아서")
 
@@ -20,8 +21,10 @@ def report():
     print("---")
 
     # 3) 보스전 준비: 무기 교체 + 강화
-    print(hero.equip("물의 창"), hero.weapon, [i.name for i in hero.inventory.items])
-    print(hero.upgrade_weapon(), hero.weapon, hero.weapon.power)
+    print(
+        hero.equip("물의 창"), hero.weapon.name, [i.name for i in hero.inventory.items]
+    )
+    print(hero.upgrade_weapon(), hero.weapon.name, hero.weapon.power)
     print("---")
 
     # 4) 보스전
@@ -31,6 +34,7 @@ def report():
         turn += 1
         hero.attack(boss)
     print(f"{turn}턴 만에 보스 처치! Lv.{hero.level.level}, EXP {hero.level.exp}")
+
 
 def main():
     report()

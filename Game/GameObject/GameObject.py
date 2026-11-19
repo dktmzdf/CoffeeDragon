@@ -1,4 +1,7 @@
-class GameObject:
+from abc import ABC
+
+
+class GameObject(ABC):
     def __init__(self, name):
         self.name = name
 

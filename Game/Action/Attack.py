@@ -17,7 +17,13 @@ class Attack:
         calc_damage = base_dmg * weapon_element.multiplier(self.target.element)
         return calc_damage
 
-    def execute(self) -> int:
+    def execute(self) -> str:
         dmg = self.damage
-        self.target.hp.damage(self.damage)
-        return dmg
+        self.target.damage(self.causer, self.damage)
+
+        return self.attack_log()
+
+    def attack_log(self) -> str:
+        weapon_element = self.causer.weapon.element.multiplier(self.target.element)
+        out_log = f"{self.causer.name}의 {self.causer.weapon.name}[{self.causer.weapon.element.element_name}] 공격! {self.target.name}에게 {self.damage} 피해 (x{weapon_element})"
+        return out_log

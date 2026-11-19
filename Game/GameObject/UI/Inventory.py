@@ -29,30 +29,31 @@ class Inventory:
 
         return False
 
-    def add_item_inventory(self, item: "Item") -> bool:
-        if self.is_set_owner == false:
-            return False
+    def add_item_inventory(self, item: "Item"):
+
+        if self.is_set_owner == False:
+            return
 
         if self.inventory_limit:
-            return False
+            return
 
         self.inventory[item.uuid] = item
 
-        return True
+        return f"'{item.name}' 흭득!"
 
     def remove_item_inventroy_for_name(self, name: str) -> bool:
-        if self.is_set_owner == false:
+        if self.is_set_owner == False:
             return False
 
-        for key, value in self.inventory:
+        for key, value in self.inventory.items():
             if value.name == name:
-                self.inventory.pop(key)
+                self.remove_item_inventroy(value)
                 return True
 
         return False
 
     def remove_item_inventroy(self, item: "Item") -> bool:
-        if self.is_set_owner == false:
+        if self.is_set_owner == False:
             return False
 
         self.inventory.pop(item.uuid)
@@ -61,7 +62,7 @@ class Inventory:
 
     # TODO get_item_for_name으로 바꿀것
     def take(self, name: str) -> "Item":
-        if self.is_set_owner == false:
+        if self.is_set_owner == False:
             return False
 
         for key, value in self.inventory:
@@ -70,11 +71,15 @@ class Inventory:
 
         return None
 
+    @property
     def items(self):
-        return [key for key, value in self.inventory.items()]
+        return [value for key, value in self.inventory.items()]
+
+    def items_new(self):
+        return self.inventory.items()
 
     def add(self, item: "Item"):
-        add_item_inventory(item)
+        self.add_item_inventory(item)
 
     # 나중 구현
     def take__(self, item: "Item") -> "Item":

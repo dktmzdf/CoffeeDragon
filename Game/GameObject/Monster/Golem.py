@@ -6,4 +6,4 @@ from Game.Element import Element
 
 class Golem(Monster):
     def __init__(self):
-        super().__init__("골렘", HP(80), Element.GRASS, 30, Item("강화석"))
+        super().__init__("골렘", HP(120), Element.GRASS, 90, Item("강화석"))

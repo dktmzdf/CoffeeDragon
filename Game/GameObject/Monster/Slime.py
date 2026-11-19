@@ -6,4 +6,6 @@ from Game.Element import Element
 
 class Slime(Monster):
     def __init__(self):
-        super().__init__("슬라임", HP(30), Element.GRASS, 10, Weapon("물의 창", 15, 0, Element.WATER))
+        super().__init__(
+            "슬라임", HP(40), Element.GRASS, 60, Weapon("물의 창", 60, 0, Element.WATER)
+        )

@@ -7,4 +7,4 @@ from Game.Element import Element
 
 class Warrior(Character):
     def __init__(self, name):
-        super().__init__(name, HP(100), Level(), Weapon("화염검", 10, 0, Element.FIRE))
+        super().__init__(name, HP(100), Level(), Weapon("화염검", 30, 0, Element.FIRE))
