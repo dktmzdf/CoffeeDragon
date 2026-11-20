@@ -5,12 +5,13 @@ from Game.GameObject.Item.Item import Item
 from Util.GameLog import GameLog
 
 
-class Monster(GameObject):
-    """몬스터의 부모 클래스 (GameObject IS-A).
+class Monster(Character):
+    """몬스터의 부모 클래스 (Character IS-A).
 
     체력(HP), 속성(Element), 처치 시 주는 경험치, 드랍 아이템(Item HAS-A)을 가진다.
     체력이 0이 되면 death()에서 공격한 캐릭터에게 드랍 아이템과 경험치를 주고
     처치 로그를 GameLog에 기록한다."""
+
     def __init__(
         self,
         name: str,

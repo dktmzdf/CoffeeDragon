@@ -1,12 +1,12 @@
-from Game.GameObject.Character.Character import Character
+from Game.GameObject.Character.Hero.Hero import Hero
 from Game.Attribute.HP import HP
 from Game.GameObject.Level import Level
 from Game.GameObject.Item.Weapon import Weapon
 from Game.Element import Element
 
 
-class Warrior(Character):
-    """전사 캐릭터 (Character IS-A).
+class Warrior(Hero):
+    """전사 캐릭터 (Hero IS-A).
 
     체력 100, 시작 무기는 '화염검'(공격력 30, 불 속성)."""
 

@@ -12,9 +12,10 @@ from Util.GameLog import GameLog
 class Character(GameObject):
     """플레이어 캐릭터의 부모 클래스 (GameObject IS-A).
 
-    체력(HP), 레벨(Level), 장착 무기(Weapon), 인벤토리(Inventory)를 HAS-A로 가진다.
+    체력(HP), 레벨(Level), 장착 무기(Weapon), 인벤토리(Inventory)클래스를 속성으로 가진다.
     몬스터 공격, 무기 교체, 강화석으로 무기 강화, 경험치 획득을 담당한다.
     레벨이 오르면 최대 체력도 함께 늘어난다."""
+
     def __init__(self, name, hp: HP, level: Level, weapon: Weapon):
         """체력, 레벨, 무기 설정 및 인벤토리 생성"""
         self.name = name
